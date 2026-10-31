@@ -1,6 +1,6 @@
 {
   "name": "engineering-standards",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A modular, customizable engineering standards and AI coding instruction toolkit.",
   "type": "module",
   "bin": {
@@ -19,7 +19,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "start": "node ./bin/cli.js",
+    "start": "node init && node ./bin/cli.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "validate": "node ./scripts/validate-package.js"
