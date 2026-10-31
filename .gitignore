@@ -6,3 +6,4 @@ Thumbs.db
 coverage/
 *.log
 
+config.bat
