@@ -12,7 +12,7 @@ export class CursorAdapter {
   }
 
   /**
-   * Configures Cursor rules with progressive context loading and user precedence.
+   * Configures Cursor rules with progressive context loading, user precedence, and strict scope containment.
    * Core rule is always loaded; domain rules load conditionally via globs.
    * 
    * @param {import('../catalog/validate-catalog.js').CatalogEntrySchema[]} entries
@@ -36,6 +36,12 @@ export class CursorAdapter {
       let contextDirectives = '';
       if (isCore) {
         contextDirectives = `
+## Strict Scope Boundary: Only Touch Code Explicitly Requested
+- **Touch ONLY the code the user asks you to touch.**
+- **NEVER** refactor, reformat, or rewrite existing working code that was not requested.
+- If existing code has issues or violates standards, mention recommendations in chat text; **do not modify existing code unless explicitly told by the user**.
+- Always preserve backward compatibility for existing callers.
+
 ## Precedence & Pragmatic User Overrides
 - **Rule 0 (Top Priority)**: Explicit user instructions in active chat **always override** repository standards. If the user explicitly asks for an exception, workaround, or specific implementation, follow their instruction.
 - **Rule 1**: Follow standards by default to prevent accidental anti-patterns and performance flaws.
@@ -65,7 +71,7 @@ ${contextDirectives}
 ${fileList}
 
 ## AI Agent Instructions
-Adhere to the canonical standards above by default when writing or refactoring code within this rule's scope, unless explicitly instructed otherwise by the user.
+Adhere to the canonical standards above by default when writing or refactoring code within this rule's scope. Only touch files and functions the user explicitly asks you to touch, unless explicitly instructed otherwise by the user.
 `;
 
       await fs.writeFile(ruleFilePath, content, 'utf8');

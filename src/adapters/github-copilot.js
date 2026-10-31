@@ -13,7 +13,7 @@ export class GitHubCopilotAdapter {
   }
 
   /**
-   * Configures GitHub Copilot custom instructions with progressive loading and user precedence.
+   * Configures GitHub Copilot custom instructions with progressive loading, user precedence, and scope boundary.
    * @param {import('../catalog/validate-catalog.js').CatalogEntrySchema[]} entries
    */
   async configure(entries) {
@@ -33,16 +33,19 @@ export class GitHubCopilotAdapter {
     const managedBlock = `${startTag}
 ## Engineering Standards & Architecture Rules
 
+> **Strict Scope Boundary**: **Touch ONLY the code the user asks you to touch.** NEVER modify, refactor, or rewrite existing working code unless explicitly told to do so. Suggest improvements in chat comments, but keep untouched files intact.
+
 > **Instruction Precedence**: Explicit user directions in active chat **always take precedence** over these rules.
 
 > **Progressive Context Loading**: Check the task domain and consult only the matching standard document:
 ${routerRows.join('\n')}
 
 ### Core Invariants:
-1. **Existing Code Discovery**: Search existing components, hooks, and utilities before creating new ones.
-2. **Project Context**: Check \`.engineering-standards/PROJECT_CONTEXT.md\` for structure and reusable registries.
-3. **Database Performance**: Execute all filtering, sorting, and pagination at the database level. Never fetch entire collections into memory unless explicitly asked by the user for small fixed data.
-4. **Instruction Modes**:
+1. **Scope Containment**: Edit only the requested lines/functions. Never rewrite working legacy code unprompted.
+2. **Existing Code Discovery**: Search existing components, hooks, and utilities before creating new ones.
+3. **Project Context**: Check \`.engineering-standards/PROJECT_CONTEXT.md\` for structure and reusable registries.
+4. **Database Performance**: Execute all filtering, sorting, and pagination at the database level. Never fetch entire collections into memory unless explicitly asked by the user for small fixed data.
+5. **Instruction Modes**:
    - *Minimal*: Follow standard clean code for quick fixes.
    - *Standard*: Review the matching domain standard above.
    - *Strict*: For auth, payments, or database migrations, enforce strict security and query optimization.

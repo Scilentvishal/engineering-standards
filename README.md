@@ -33,6 +33,7 @@ AI coding assistants are exceptionally capable, but without structured architect
 ## Key Features
 
 - ⚡ **Progressive Context Loading**: Instructions are tiered hierarchically. Domain standards are loaded on-demand via task routers or file-specific globs (Cursor), preventing prompt bloat.
+- 🛡️ **Strict Scope Boundary (Zero Unsolicited Edits)**: AI agents are strictly forbidden from modifying, refactoring, or restructuring existing working code that the user did not explicitly ask to touch. Legacy code remains 100% frozen.
 - 📋 **Living Project Context (`PROJECT_CONTEXT.md`)**: Generates an editable architectural register of existing components, hooks, API clients, and folder structures so AI agents discover and reuse existing code instead of recreating duplicates.
 - 🎚️ **Instruction Loading Modes**:
   - **Minimal**: Lightweight, high-velocity instructions for simple bugfixes and single-line adjustments.

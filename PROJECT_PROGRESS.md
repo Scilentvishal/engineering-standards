@@ -11,6 +11,10 @@
   - Tier 2: Living project overrides in `.engineering-standards/PROJECT_CONTEXT.md`.
   - Tier 3: Engineering standards as default guardrails.
   - Embedded into Core standard, database performance mandate, and all 4 AI adapters (Cursor, Claude Code, GitHub Copilot, Generic).
+- [x] **Strict Scope Boundary (Zero Unsolicited Code Changes)**:
+  - AI agents are instructed to touch ONLY code the user explicitly requests to touch.
+  - Existing working code and legacy files remain 100% frozen; AI is forbidden from unprompted refactoring.
+  - If existing code has flaws, AI may only recommend improvements in chat text, never modify existing files unprompted.
 - [x] **Task Classification Protocol**: Domain-level mapping (Frontend, Backend, Database, Security, Testing, Trivial).
 - [x] **Pre-Implementation Code Discovery Protocol**: Enforces searching existing components, hooks, API fetchers, and database models before writing new code.
 - [x] **Instruction Loading Modes**:

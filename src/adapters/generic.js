@@ -12,7 +12,7 @@ export class GenericAdapter {
   }
 
   /**
-   * Configures AI_INSTRUCTIONS.md with progressive context loading routing and user precedence.
+   * Configures AI_INSTRUCTIONS.md with progressive context loading routing, user precedence, and strict scope boundary.
    * @param {import('../catalog/validate-catalog.js').CatalogEntrySchema[]} entries
    */
   async configure(entries) {
@@ -30,16 +30,19 @@ export class GenericAdapter {
     const managedBlock = `${startTag}
 ## Engineering Standards & Architecture Router
 
+> **Strict Scope Boundary**: **Touch ONLY code the user explicitly asks you to touch.** NEVER modify, refactor, or reorganize existing working code unless told to do so. Suggest improvements in chat text, but keep untouched files 100% intact.
+
 > **Instruction Precedence**: Explicit user commands in active chat **always override** repository standards. If the user explicitly asks for an exception, follow their request. Otherwise, apply these standards as default guardrails.
 
 > **Progressive Context Protocol**: Classify your task and consult only the matching standard document to preserve context window:
 ${routerRows.join('\n')}
 
 ### Core Architectural Invariants:
-1. **Existing Code Discovery**: Search existing components, custom hooks, and utilities before implementing new ones.
-2. **Project Context**: Consult \`.engineering-standards/PROJECT_CONTEXT.md\` for project architecture and registries.
-3. **Database Operations**: Perform all filtering, sorting, searching, and pagination at the database level. Never fetch entire collections into memory unless explicitly asked by the user for small fixed data.
-4. **Instruction Modes**:
+1. **Scope Containment**: Modify only the requested files/functions. Never rewrite legacy code unprompted.
+2. **Existing Code Discovery**: Search existing components, custom hooks, and utilities before implementing new ones.
+3. **Project Context**: Consult \`.engineering-standards/PROJECT_CONTEXT.md\` for project architecture and registries.
+4. **Database Operations**: Perform all filtering, sorting, searching, and pagination at the database level. Never fetch entire collections into memory unless explicitly asked by the user for small fixed data.
+5. **Instruction Modes**:
    - *Minimal*: For simple 1-line fixes, follow clean code without reading deep standards.
    - *Standard*: Review the matching domain standard above.
    - *Strict*: For auth, payments, or database migrations, enforce strict security, architecture, and query optimization.

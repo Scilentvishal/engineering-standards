@@ -17,7 +17,18 @@ Tier 3: Engineering Standards & Framework Profiles (Default Guardrails)
 
 ---
 
-## 2. Context Efficiency & Progressive Loading Protocol
+## 2. Strict Scope Boundary: Only Touch Code Explicitly Requested
+
+> [!CRITICAL]
+> **ZERO UNSOLICITED MODIFICATIONS RULE**:
+> - **Touch ONLY the exact files, functions, or lines the user explicitly asks to modify, create, or fix.**
+> - **NEVER** edit, refactor, clean up, reformat, or restructure existing code that the user did not explicitly tell you to touch.
+> - **Existing Code Safety in Legacy / Large Projects**: Even if existing code violates standards or has performance issues, **DO NOT touch it**. You may briefly mention recommendations in your chat response, but you must keep existing code 100% untouched unless the user explicitly commands you to modify it.
+> - **Preserve Existing Interfaces & Contracts**: When adding new functionality, ensure existing callers, parameters, and return types remain backward-compatible so nothing in the existing project breaks.
+
+---
+
+## 3. Context Efficiency & Progressive Loading Protocol
 To minimize unnecessary context consumption while maintaining high implementation quality, follow this workflow:
 
 ### A. Task Classification
@@ -50,7 +61,7 @@ Before creating new functions, components, or utilities:
 
 ---
 
-## 3. Foundational Architecture Principles
+## 4. Foundational Architecture Principles
 - **Separation of Concerns (SoC)**: Isolate UI rendering, application services, domain business rules, and data persistence into distinct tiers.
 - **Single Responsibility (SRP)**: Every module, class, and function must have exactly one reason to change. Aim for under 30-40 lines per function.
 - **Composition over Inheritance**: Favor lightweight composed functions, interfaces, and hooks over deep inheritance hierarchies.
@@ -59,7 +70,7 @@ Before creating new functions, components, or utilities:
 
 ---
 
-## 4. Robust Error Handling & Defensive Programming
+## 5. Robust Error Handling & Defensive Programming
 - **Never Swallow Errors**: Catch, log with contextual metadata, and either recover or bubble structured domain errors.
 - **Structured Domain Errors**: Extend base application error classes (e.g., `ValidationError`, `NotFoundError`, `UnauthorizedError`) with HTTP status and operational flags.
 - **Guard Clauses**: Validate preconditions at function ingress and fail fast.
@@ -67,7 +78,7 @@ Before creating new functions, components, or utilities:
 
 ---
 
-## 5. Implementation Verification
+## 6. Implementation Verification
 Token efficiency must never compromise verification:
 - Inspect relevant existing tests before modifying code.
 - Run automated tests after changes to verify regression freedom.

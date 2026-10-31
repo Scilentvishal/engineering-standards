@@ -133,6 +133,8 @@ describe('token efficiency and progressive context loading', () => {
 
     const claudeContent = await fs.readFile(path.join(tmpDir, 'CLAUDE.md'), 'utf8');
     expect(claudeContent).toContain('Task Routing Table');
+    expect(claudeContent).toContain('Strict Scope Boundary');
+    expect(claudeContent).toContain('Only touch code the user explicitly asks you to touch');
     expect(claudeContent).toContain('Existing Code Discovery');
     expect(claudeContent).toContain('Instruction Precedence');
     expect(claudeContent).toContain('.engineering-standards/PROJECT_CONTEXT.md');
@@ -156,6 +158,8 @@ describe('token efficiency and progressive context loading', () => {
     await adapter.configure(entries);
 
     const coreRule = await fs.readFile(path.join(tmpDir, '.cursor/rules/core.mdc'), 'utf8');
+    expect(coreRule).toContain('Strict Scope Boundary: Only Touch Code Explicitly Requested');
+    expect(coreRule).toContain('Touch ONLY the code the user asks you to touch');
     expect(coreRule).toContain('Precedence & Pragmatic User Overrides');
     expect(coreRule).toContain('Explicit user instructions in active chat **always override** repository standards');
   });
