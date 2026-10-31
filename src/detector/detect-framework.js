@@ -121,6 +121,13 @@ export async function detectProjectFrameworks(projectRoot) {
     summary.push('Next.js + Prisma composite profile matched');
   }
 
+  // TypeScript check
+  const hasTsConfig = await fileExists(path.resolve(root, 'tsconfig.json'));
+  if (hasTsConfig || 'typescript' in allDeps) {
+    detectedProfiles.add('profile:typescript');
+    summary.push('TypeScript detected');
+  }
+
   // Testing & Security recommendations
   if ('jest' in allDeps || 'vitest' in allDeps || 'mocha' in allDeps || 'pytest' in allDeps) {
     detectedCategories.add('testing');

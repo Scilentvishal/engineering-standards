@@ -51,6 +51,13 @@ describe('framework and project detection', () => {
     expect(result.detectedProfiles).toContain('profile:mongodb');
   });
 
+  it('detects TypeScript from tsconfig.json or dependencies', async () => {
+    await fs.writeFile(path.join(tmpDir, 'tsconfig.json'), '{}', 'utf8');
+    const result = await detectProjectFrameworks(tmpDir);
+    expect(result.detectedProfiles).toContain('profile:typescript');
+    expect(result.summary).toContain('TypeScript detected');
+  });
+
   it('detects monorepo markers and package managers', async () => {
     await fs.writeFile(path.join(tmpDir, 'pnpm-workspace.yaml'), 'packages:\n  - "packages/*"', 'utf8');
     await fs.writeFile(path.join(tmpDir, 'pnpm-lock.yaml'), 'lockfileVersion: 5.4', 'utf8');

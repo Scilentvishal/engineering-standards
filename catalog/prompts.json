@@ -419,6 +419,25 @@
           "description": "Next.js server-side data fetching with Prisma client singleton."
         }
       ]
+    },
+    {
+      "id": "profile:typescript",
+      "name": "TypeScript Language Profile",
+      "description": "Strict type safety, zero any policy, as const object unions, schema inference, and generics.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["core"],
+      "adapterMetadata": {
+        "globs": "**/*.{ts,tsx,d.ts}"
+      },
+      "files": [
+        {
+          "id": "profile-typescript",
+          "source": "profiles/typescript/TYPESCRIPT.md",
+          "target": "profiles/TYPESCRIPT.md",
+          "description": "TypeScript type safety, zero any, as const enums, and schema inference."
+        }
+      ]
     }
   ]
 }
