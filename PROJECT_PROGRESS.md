@@ -6,6 +6,11 @@
 
 #### 1. Token Efficiency & Context Optimization Architecture
 - [x] **Progressive Context Loading**: Instructions split into Core (always active) and Domain standards loaded strictly on-demand.
+- [x] **Instruction Precedence & Explicit User Overrides**:
+  - Tier 1: Explicit user instructions in active chat strictly override repository standards.
+  - Tier 2: Living project overrides in `.engineering-standards/PROJECT_CONTEXT.md`.
+  - Tier 3: Engineering standards as default guardrails.
+  - Embedded into Core standard, database performance mandate, and all 4 AI adapters (Cursor, Claude Code, GitHub Copilot, Generic).
 - [x] **Task Classification Protocol**: Domain-level mapping (Frontend, Backend, Database, Security, Testing, Trivial).
 - [x] **Pre-Implementation Code Discovery Protocol**: Enforces searching existing components, hooks, API fetchers, and database models before writing new code.
 - [x] **Instruction Loading Modes**:
@@ -58,6 +63,6 @@
 
 ## Test Results
 - **Test Suites**: 12 passed (12 total)
-- **Tests**: 37 passed (37 total)
+- **Tests**: 38 passed (38 total)
 - **Audit**: 0 vulnerabilities
 - **npm pack**: Clean, verified, 37 kB package

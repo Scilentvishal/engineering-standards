@@ -12,7 +12,7 @@ export class ClaudeCodeAdapter {
   }
 
   /**
-   * Updates or creates CLAUDE.md with a progressive, token-efficient routing table.
+   * Updates or creates CLAUDE.md with a progressive, token-efficient routing table and user override directive.
    * @param {import('../catalog/validate-catalog.js').CatalogEntrySchema[]} entries
    */
   async configure(entries) {
@@ -30,6 +30,8 @@ export class ClaudeCodeAdapter {
     const managedBlock = `${startTag}
 ## Engineering Standards & Architecture Router
 
+> **Instruction Precedence**: Explicit user commands in active conversation **always override** repository standards. If the user explicitly asks for an exception, follow their request. Otherwise, apply these standards as default guardrails.
+
 > **Progressive Context Protocol**: Do not read all engineering files at once. Classify the task domain and read ONLY the relevant standard before writing code.
 
 ### Task Routing Table
@@ -40,7 +42,7 @@ ${routerRows.join('\n')}
 ### Execution Guidelines
 1. **Existing Code Discovery**: Before creating new components, hooks, or utilities, search existing files to reuse and compose rather than duplicate.
 2. **Project Context**: Check \`.engineering-standards/PROJECT_CONTEXT.md\` for project structure, tech stack, and reusable registers.
-3. **Database Performance Rule**: Always execute filtering, sorting, searching, and pagination at the database level. Never fetch entire collections into application memory.
+3. **Database Performance Rule**: Always execute filtering, sorting, searching, and pagination at the database level. Never fetch entire collections into application memory (unless user explicitly requests in-memory handling for small static data).
 4. **Instruction Modes**:
    - *Minimal*: For simple 1-line fixes, follow clean code without reading deep standards.
    - *Standard*: Read the matching domain standard above before coding.

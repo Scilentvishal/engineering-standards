@@ -12,7 +12,7 @@ export class GenericAdapter {
   }
 
   /**
-   * Configures AI_INSTRUCTIONS.md with progressive context loading routing.
+   * Configures AI_INSTRUCTIONS.md with progressive context loading routing and user precedence.
    * @param {import('../catalog/validate-catalog.js').CatalogEntrySchema[]} entries
    */
   async configure(entries) {
@@ -30,13 +30,15 @@ export class GenericAdapter {
     const managedBlock = `${startTag}
 ## Engineering Standards & Architecture Router
 
+> **Instruction Precedence**: Explicit user commands in active chat **always override** repository standards. If the user explicitly asks for an exception, follow their request. Otherwise, apply these standards as default guardrails.
+
 > **Progressive Context Protocol**: Classify your task and consult only the matching standard document to preserve context window:
 ${routerRows.join('\n')}
 
 ### Core Architectural Invariants:
 1. **Existing Code Discovery**: Search existing components, custom hooks, and utilities before implementing new ones.
 2. **Project Context**: Consult \`.engineering-standards/PROJECT_CONTEXT.md\` for project architecture and registries.
-3. **Database Operations**: Perform all filtering, sorting, searching, and pagination at the database level. Never fetch entire collections into memory.
+3. **Database Operations**: Perform all filtering, sorting, searching, and pagination at the database level. Never fetch entire collections into memory unless explicitly asked by the user for small fixed data.
 4. **Instruction Modes**:
    - *Minimal*: For simple 1-line fixes, follow clean code without reading deep standards.
    - *Standard*: Review the matching domain standard above.

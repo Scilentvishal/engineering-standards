@@ -12,7 +12,7 @@ export class CursorAdapter {
   }
 
   /**
-   * Configures Cursor rules with progressive context loading.
+   * Configures Cursor rules with progressive context loading and user precedence.
    * Core rule is always loaded; domain rules load conditionally via globs.
    * 
    * @param {import('../catalog/validate-catalog.js').CatalogEntrySchema[]} entries
@@ -36,8 +36,12 @@ export class CursorAdapter {
       let contextDirectives = '';
       if (isCore) {
         contextDirectives = `
+## Precedence & Pragmatic User Overrides
+- **Rule 0 (Top Priority)**: Explicit user instructions in active chat **always override** repository standards. If the user explicitly asks for an exception, workaround, or specific implementation, follow their instruction.
+- **Rule 1**: Follow standards by default to prevent accidental anti-patterns and performance flaws.
+
 ## Progressive Context Loading & Workflow
-1. **Task Classification**: Identify if the current task involves Frontend, Backend, Database, Security, or Testing.
+1. **Task Classification**: Identify if the task involves Frontend, Backend, Database, Security, or Testing.
 2. **Code Discovery**: Search existing components, hooks, utilities, and API fetchers before implementing new ones.
 3. **Project Context**: Consult [.engineering-standards/PROJECT_CONTEXT.md](.engineering-standards/PROJECT_CONTEXT.md).
 4. **Instruction Modes**:
@@ -61,7 +65,7 @@ ${contextDirectives}
 ${fileList}
 
 ## AI Agent Instructions
-Adhere to the canonical standards above when writing or refactoring code within this rule's scope.
+Adhere to the canonical standards above by default when writing or refactoring code within this rule's scope, unless explicitly instructed otherwise by the user.
 `;
 
       await fs.writeFile(ruleFilePath, content, 'utf8');

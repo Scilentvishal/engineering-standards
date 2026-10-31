@@ -134,8 +134,30 @@ describe('token efficiency and progressive context loading', () => {
     const claudeContent = await fs.readFile(path.join(tmpDir, 'CLAUDE.md'), 'utf8');
     expect(claudeContent).toContain('Task Routing Table');
     expect(claudeContent).toContain('Existing Code Discovery');
+    expect(claudeContent).toContain('Instruction Precedence');
     expect(claudeContent).toContain('.engineering-standards/PROJECT_CONTEXT.md');
     expect(claudeContent).toContain('.engineering-standards/database/DATABASE.md');
+  });
+
+  it('Cursor adapter includes explicit user override precedence in core.mdc', async () => {
+    const adapter = new CursorAdapter(tmpDir);
+    const entries = [
+      {
+        id: 'core',
+        name: 'Core Engineering Standards',
+        description: 'Core standards',
+        category: 'core',
+        version: '1.0.0',
+        dependencies: [],
+        files: [{ id: 'c1', source: 'core/ENGINEERING.md', target: 'core/ENGINEERING.md', description: 'Core' }]
+      }
+    ];
+
+    await adapter.configure(entries);
+
+    const coreRule = await fs.readFile(path.join(tmpDir, '.cursor/rules/core.mdc'), 'utf8');
+    expect(coreRule).toContain('Precedence & Pragmatic User Overrides');
+    expect(coreRule).toContain('Explicit user instructions in active chat **always override** repository standards');
   });
 });
 

@@ -1,10 +1,12 @@
 # Database Performance, Filtering, Sorting & Pagination
 
 > [!CRITICAL]
-> **STRICT DATABASE-LEVEL OPERATION MANDATE**:
-> AI coding agents and developers must strictly execute all filtering, searching, sorting, and pagination **at the database level**.
-> **NEVER fetch an entire table or collection into backend memory (Node.js/Python) to filter, sort, or paginate it in application memory.**
-> In-memory filtering causes catastrophic memory bloat, high latency, event-loop starvation, and database I/O saturation.
+> **DEFAULT DATABASE-LEVEL OPERATION MANDATE**:
+> By default, all filtering, searching, sorting, and pagination must be executed **at the database level**.
+> **Never fetch an entire table or collection into application runtime memory (Node.js/Python) to filter, sort, or paginate in application memory.**
+> In-memory collection filtering causes catastrophic memory bloat, high latency, event-loop starvation, and database I/O saturation.
+> 
+> *Pragmatic Override Rule*: If the developer explicitly instructs you to filter a small fixed set of in-memory data (e.g. 5 static configuration enum items), honor their explicit request.
 
 ---
 
@@ -34,4 +36,3 @@
 - In relational databases, use SQL joins or batch fetching (`WHERE parent_id IN (...)`).
 - In ORMs (Prisma, TypeORM, Drizzle), always use eager loading / batch inclusion (`include: { relations: true }`).
 - Limit selected columns using projection (`SELECT id, name` instead of `SELECT *`).
-
