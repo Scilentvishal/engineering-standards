@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EngineeringStandardsConfig",
+  "type": "object",
+  "required": ["version", "categories", "profiles", "adapters"],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["minimal", "standard", "strict"],
+      "default": "standard"
+    },
+    "categories": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "profiles": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "adapters": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["cursor", "claude-code", "copilot", "generic"] }
+    },
+    "updatePreferences": {
+      "type": "object",
+      "properties": {
+        "autoBackup": { "type": "boolean" },
+        "strategy": { "type": "string", "enum": ["three-way", "conservative", "force"] }
+      }
+    },
+    "customSettings": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

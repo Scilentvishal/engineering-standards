@@ -1,0 +1,425 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "core",
+      "name": "Core Engineering Standards",
+      "description": "Foundational architecture, code quality, error handling, and workflow standards.",
+      "category": "core",
+      "version": "1.0.0",
+      "dependencies": [],
+      "adapterMetadata": {
+        "alwaysApply": true
+      },
+      "files": [
+        {
+          "id": "core-engineering",
+          "source": "core/ENGINEERING.md",
+          "target": "core/ENGINEERING.md",
+          "description": "General engineering, clean code, error handling and maintainability principles."
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend Engineering Standards",
+      "description": "Reusable UI components, custom hooks, API integration, state management, accessibility, and testing.",
+      "category": "frontend",
+      "version": "1.0.0",
+      "dependencies": ["core"],
+      "adapterMetadata": {
+        "globs": "**/*.{tsx,jsx,vue,svelte,ts,js,css,scss}"
+      },
+      "files": [
+        {
+          "id": "frontend-main",
+          "source": "frontend/FRONTEND.md",
+          "target": "frontend/FRONTEND.md",
+          "description": "Frontend architecture, accessibility, and performance guidelines."
+        },
+        {
+          "id": "frontend-components",
+          "source": "frontend/COMPONENTS.md",
+          "target": "frontend/COMPONENTS.md",
+          "description": "Reusable component design, props, and composition patterns."
+        },
+        {
+          "id": "frontend-hooks",
+          "source": "frontend/HOOKS.md",
+          "target": "frontend/HOOKS.md",
+          "description": "Custom hooks, lifecycle management, and effect hygiene."
+        },
+        {
+          "id": "frontend-api",
+          "source": "frontend/API_INTEGRATION.md",
+          "target": "frontend/API_INTEGRATION.md",
+          "description": "API client architecture, request cancellation, and server-state caching."
+        },
+        {
+          "id": "frontend-state",
+          "source": "frontend/STATE_MANAGEMENT.md",
+          "target": "frontend/STATE_MANAGEMENT.md",
+          "description": "URL state, local state, and global store management standards."
+        },
+        {
+          "id": "frontend-testing",
+          "source": "frontend/TESTING.md",
+          "target": "frontend/TESTING.md",
+          "description": "Accessible component and custom hook testing standards."
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Backend Engineering Standards",
+      "description": "Layered architecture, controllers, services, repositories, RESTful API design, auth, and error handling.",
+      "category": "backend",
+      "version": "1.0.0",
+      "dependencies": ["core"],
+      "adapterMetadata": {
+        "globs": "**/*.{ts,js,py,go,java,rb,php}"
+      },
+      "files": [
+        {
+          "id": "backend-main",
+          "source": "backend/BACKEND.md",
+          "target": "backend/BACKEND.md",
+          "description": "Backend architecture overview and stateless reliability."
+        },
+        {
+          "id": "backend-layered",
+          "source": "backend/LAYERED_ARCHITECTURE.md",
+          "target": "backend/LAYERED_ARCHITECTURE.md",
+          "description": "Strict separation between controllers, services, and repositories."
+        },
+        {
+          "id": "backend-api-design",
+          "source": "backend/API_DESIGN.md",
+          "target": "backend/API_DESIGN.md",
+          "description": "RESTful endpoints, HTTP methods, idempotency, and response envelopes."
+        },
+        {
+          "id": "backend-validation",
+          "source": "backend/VALIDATION.md",
+          "target": "backend/VALIDATION.md",
+          "description": "Ingress schema validation and parameter sanitization."
+        },
+        {
+          "id": "backend-auth",
+          "source": "backend/AUTH.md",
+          "target": "backend/AUTH.md",
+          "description": "Authentication tokens, session management, and RBAC tenant isolation."
+        },
+        {
+          "id": "backend-errors",
+          "source": "backend/ERROR_HANDLING.md",
+          "target": "backend/ERROR_HANDLING.md",
+          "description": "Centralized error hierarchy and exception handling."
+        },
+        {
+          "id": "backend-performance",
+          "source": "backend/PERFORMANCE.md",
+          "target": "backend/PERFORMANCE.md",
+          "description": "Asynchronous non-blocking I/O and caching strategies."
+        },
+        {
+          "id": "backend-testing",
+          "source": "backend/TESTING.md",
+          "target": "backend/TESTING.md",
+          "description": "Unit testing domain services and API route integration tests."
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "name": "Database Engineering Standards",
+      "description": "Database-level filtering, sorting, pagination, query optimization, indexing, and transactions.",
+      "category": "database",
+      "version": "1.0.0",
+      "dependencies": ["core"],
+      "adapterMetadata": {
+        "globs": "**/*.{sql,prisma,ts,js,py}"
+      },
+      "files": [
+        {
+          "id": "database-main",
+          "source": "database/DATABASE.md",
+          "target": "database/DATABASE.md",
+          "description": "Database modeling, constraints, connection pooling, and migrations."
+        },
+        {
+          "id": "database-pagination",
+          "source": "database/PAGINATION_AND_PERFORMANCE.md",
+          "target": "database/PAGINATION_AND_PERFORMANCE.md",
+          "description": "Mandatory database-level operations, offset vs cursor pagination, and N+1 prevention."
+        },
+        {
+          "id": "database-indexing",
+          "source": "database/TRANSACTIONS_AND_INDEXING.md",
+          "target": "database/TRANSACTIONS_AND_INDEXING.md",
+          "description": "Index design, leftmost prefix rule, and transaction locking patterns."
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security Engineering Standards",
+      "description": "Zero trust architecture, OWASP protection, secrets management, input sanitization, and token security.",
+      "category": "security",
+      "version": "1.0.0",
+      "dependencies": ["core"],
+      "adapterMetadata": {
+        "alwaysApply": true
+      },
+      "files": [
+        {
+          "id": "security-main",
+          "source": "security/SECURITY.md",
+          "target": "security/SECURITY.md",
+          "description": "Zero trust, least privilege, secrets management, and web vulnerability defense."
+        },
+        {
+          "id": "security-owasp",
+          "source": "security/OWASP_AND_INPUT.md",
+          "target": "security/OWASP_AND_INPUT.md",
+          "description": "OWASP standards, input sanitization, and token storage rules."
+        }
+      ]
+    },
+    {
+      "id": "testing",
+      "name": "Testing Engineering Standards",
+      "description": "Testing pyramid, unit, integration, E2E, regression testing, and deterministic test data.",
+      "category": "testing",
+      "version": "1.0.0",
+      "dependencies": ["core"],
+      "adapterMetadata": {
+        "globs": "**/*.{test,spec}.{ts,js,tsx,jsx,py}"
+      },
+      "files": [
+        {
+          "id": "testing-main",
+          "source": "testing/TESTING.md",
+          "target": "testing/TESTING.md",
+          "description": "Testing pyramid proportions, isolation, and determinism."
+        },
+        {
+          "id": "testing-regression",
+          "source": "testing/STRATEGIES_AND_REGRESSION.md",
+          "target": "testing/STRATEGIES_AND_REGRESSION.md",
+          "description": "Regression tests and boundary value analysis."
+        }
+      ]
+    },
+    {
+      "id": "profile:react",
+      "name": "React Framework Profile",
+      "description": "React functional component best practices, hooks usage, rendering optimization, and key stability.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["frontend"],
+      "adapterMetadata": {
+        "globs": "**/*.{tsx,jsx}"
+      },
+      "files": [
+        {
+          "id": "profile-react",
+          "source": "profiles/react/REACT.md",
+          "target": "profiles/REACT.md",
+          "description": "React component architecture and state management standards."
+        }
+      ]
+    },
+    {
+      "id": "profile:nextjs",
+      "name": "Next.js Framework Profile",
+      "description": "Next.js App Router, React Server Components, Server Actions, caching, and route handlers.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["frontend", "profile:react"],
+      "adapterMetadata": {
+        "globs": "{app,pages,components}/**/*.{tsx,jsx,ts,js}"
+      },
+      "files": [
+        {
+          "id": "profile-nextjs",
+          "source": "profiles/nextjs/NEXTJS.md",
+          "target": "profiles/NEXTJS.md",
+          "description": "App Router, RSC, Server Actions, and caching semantics."
+        }
+      ]
+    },
+    {
+      "id": "profile:react-native",
+      "name": "React Native Mobile Profile",
+      "description": "React Native mobile architecture, FlatList optimization, safe areas, animations, and secure storage.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["frontend", "profile:react"],
+      "adapterMetadata": {
+        "globs": "**/*.{tsx,jsx,ts,js}"
+      },
+      "files": [
+        {
+          "id": "profile-react-native",
+          "source": "profiles/react-native/REACT_NATIVE.md",
+          "target": "profiles/REACT_NATIVE.md",
+          "description": "Mobile native architecture, list performance, and native storage."
+        }
+      ]
+    },
+    {
+      "id": "profile:express",
+      "name": "Express.js Backend Profile",
+      "description": "Modular routing, async error handling, security middleware (helmet/cors), and body parsing.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["backend"],
+      "adapterMetadata": {
+        "globs": "**/*.{js,ts}"
+      },
+      "files": [
+        {
+          "id": "profile-express",
+          "source": "profiles/express/EXPRESS.md",
+          "target": "profiles/EXPRESS.md",
+          "description": "Express.js routes, middleware, and error handling."
+        }
+      ]
+    },
+    {
+      "id": "profile:fastapi",
+      "name": "FastAPI Backend Profile",
+      "description": "Python async architecture, Pydantic validation, dependency injection, and session lifecycle.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["backend"],
+      "adapterMetadata": {
+        "globs": "**/*.py"
+      },
+      "files": [
+        {
+          "id": "profile-fastapi",
+          "source": "profiles/fastapi/FASTAPI.md",
+          "target": "profiles/FASTAPI.md",
+          "description": "FastAPI routers, dependency injection, and async standards."
+        }
+      ]
+    },
+    {
+      "id": "profile:mongodb",
+      "name": "MongoDB & Mongoose Profile",
+      "description": "Document modeling, aggregation pipelines, database-level operations, and indexing.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["database"],
+      "adapterMetadata": {
+        "globs": "**/*.{ts,js}"
+      },
+      "files": [
+        {
+          "id": "profile-mongodb",
+          "source": "profiles/mongodb/MONGODB.md",
+          "target": "profiles/MONGODB.md",
+          "description": "Mongoose schema guidelines, indexing, and aggregation rules."
+        }
+      ]
+    },
+    {
+      "id": "profile:postgresql",
+      "name": "PostgreSQL Profile",
+      "description": "Relational schema design, JSONB indexing, keyset pagination, and query plan analysis.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["database"],
+      "adapterMetadata": {
+        "globs": "**/*.{sql,ts,js,py}"
+      },
+      "files": [
+        {
+          "id": "profile-postgresql",
+          "source": "profiles/postgresql/POSTGRESQL.md",
+          "target": "profiles/POSTGRESQL.md",
+          "description": "PostgreSQL indexing, execution plans, and concurrency."
+        }
+      ]
+    },
+    {
+      "id": "profile:mysql",
+      "name": "MySQL Profile",
+      "description": "InnoDB optimization, utf8mb4 collation, clustered index design, and deferred joins.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["database"],
+      "adapterMetadata": {
+        "globs": "**/*.{sql,ts,js,py}"
+      },
+      "files": [
+        {
+          "id": "profile-mysql",
+          "source": "profiles/mysql/MYSQL.md",
+          "target": "profiles/MYSQL.md",
+          "description": "MySQL schema standards, index optimization, and pagination."
+        }
+      ]
+    },
+    {
+      "id": "profile:prisma",
+      "name": "Prisma ORM Profile",
+      "description": "Prisma schema design, relations, query projection, transactions, and N+1 prevention.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["database"],
+      "adapterMetadata": {
+        "globs": "{prisma/**/*.prisma,**/*.{ts,js}}"
+      },
+      "files": [
+        {
+          "id": "profile-prisma",
+          "source": "profiles/prisma/PRISMA.md",
+          "target": "profiles/PRISMA.md",
+          "description": "Prisma schema modeling, relations, and query efficiency."
+        }
+      ]
+    },
+    {
+      "id": "profile:mern",
+      "name": "MERN Stack Profile",
+      "description": "Full-stack coordination across MongoDB, Express, React, and Node.js.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["core", "frontend", "backend", "database", "profile:react", "profile:express", "profile:mongodb"],
+      "adapterMetadata": {
+        "globs": "**/*.{tsx,jsx,ts,js}"
+      },
+      "files": [
+        {
+          "id": "profile-mern",
+          "source": "profiles/mern/MERN.md",
+          "target": "profiles/MERN.md",
+          "description": "Full-stack client-server contracts and security invariants."
+        }
+      ]
+    },
+    {
+      "id": "profile:nextjs-prisma",
+      "name": "Next.js + Prisma Profile",
+      "description": "Full-stack Next.js App Router integrated with Prisma ORM singleton client.",
+      "category": "profile",
+      "version": "1.0.0",
+      "dependencies": ["core", "frontend", "backend", "database", "profile:nextjs", "profile:prisma"],
+      "adapterMetadata": {
+        "globs": "{app,pages,components,prisma}/**/*.{tsx,jsx,ts,js,prisma}"
+      },
+      "files": [
+        {
+          "id": "profile-nextjs-prisma",
+          "source": "profiles/nextjs-prisma/NEXTJS_PRISMA.md",
+          "target": "profiles/NEXTJS_PRISMA.md",
+          "description": "Next.js server-side data fetching with Prisma client singleton."
+        }
+      ]
+    }
+  ]
+}
+
