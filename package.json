@@ -4,7 +4,7 @@
   "description": "A modular, customizable engineering standards and AI coding instruction toolkit.",
   "type": "module",
   "bin": {
-    "engineering-standards": "./bin/cli.js"
+    "engineering-standards": "bin/cli.js"
   },
   "files": [
     "bin",
